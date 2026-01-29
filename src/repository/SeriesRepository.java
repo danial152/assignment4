@@ -120,8 +120,7 @@ public class SeriesRepository {
         try {
             c = db.getConnection();
 
-            PreparedStatement ps = c.prepareStatement(
-                    "DELETE FROM media_content WHERE media_id=?");
+            PreparedStatement ps = c.prepareStatement("DELETE FROM media_content WHERE media_id=?");
             ps.setInt(1, id);
             ps.executeUpdate();
 

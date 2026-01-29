@@ -119,10 +119,15 @@ public class MovieRepository {
         Connection c = null;
         try {
             c = db.getConnection();
-            PreparedStatement ps = c.prepareStatement(
-                    "DELETE FROM media_content WHERE media_id=?");
-            ps.setInt(1, id);
-            ps.executeUpdate();
+            PreparedStatement ps2 = c.prepareStatement("DELETE FROM movies WHERE media_id=?");
+            ps2.setInt(1, id);
+            ps2.executeUpdate();
+
+            PreparedStatement ps1 = c.prepareStatement("DELETE FROM media_content WHERE media_id=?");
+            ps1.setInt(1, id);
+            ps1.executeUpdate();
+
+
             c.close();
         } catch (SQLException e) {
             System.out.println("sql error: " + e.getMessage());
