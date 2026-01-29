@@ -34,6 +34,6 @@ public class Episode extends MediaContent {
     }
     // overriding an abstract method
     public void displayInfo() {
-        System.out.println("Movie: " + title + ", Year: " + releaseYear + ", Episode Number: " + episodeNumber + ", Duration: " + duration + " minutes");
+        System.out.println("Episode: " + title + ", Year: " + releaseYear + ", Episode Number: " + episodeNumber + ", Duration: " + duration + " minutes");
     }
 }

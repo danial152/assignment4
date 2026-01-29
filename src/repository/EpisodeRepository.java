@@ -22,16 +22,14 @@ public class EpisodeRepository {
             c = db.getConnection();
 
             // media_content part (because Episode extends MediaContent)
-            PreparedStatement ps1 = c.prepareStatement(
-                    "INSERT INTO media_content VALUES (?, ?, ?)");
+            PreparedStatement ps1 = c.prepareStatement("INSERT INTO media_content VALUES (?, ?, ?)");
             ps1.setInt(1, e.getMediaID());
             ps1.setString(2, e.getTitle());
             ps1.setInt(3, e.getReleaseYear());
             ps1.execute();
 
             // episodes table
-            PreparedStatement ps2 = c.prepareStatement(
-                    "INSERT INTO episodes VALUES (?, ?, ?, ?)");
+            PreparedStatement ps2 = c.prepareStatement("INSERT INTO episodes VALUES (?, ?, ?, ?)");
             ps2.setInt(1, e.getMediaID());
             ps2.setInt(2, e.getEpisodeID());
             ps2.setInt(3, e.getDuration());
@@ -50,9 +48,7 @@ public class EpisodeRepository {
             c = db.getConnection();
 
             PreparedStatement ps = c.prepareStatement(
-                    "SELECT * FROM media_content mc " +
-                            "JOIN episodes e ON mc.media_id = e.media_id " +
-                            "WHERE e.episode_id = ?");
+                    "SELECT * FROM media_content mc JOIN episodes e ON mc.media_id = e.media_id WHERE e.episode_id = ?");
             ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
