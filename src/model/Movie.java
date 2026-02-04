@@ -1,6 +1,6 @@
 package model;
 
-public class Movie extends MediaContent  {
+public class Movie extends MediaContent implements Validatable<Movie> {
     private int duration;
     private String genre;
     // constructor
@@ -25,6 +25,11 @@ public class Movie extends MediaContent  {
     }
 
     // overriding abstract method
+    @Override
+    public boolean isValid(Movie m) {
+        return m.duration > 0 && m.title != null && !m.title.isEmpty();
+    }
+
     @Override
     public void displayInfo() {
         System.out.println("Movie: " + title + ", Year: " + releaseYear + ", Duration: " + duration + " minutes");

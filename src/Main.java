@@ -55,7 +55,7 @@ public class Main {
         }
 
         // displays
-        System.out.println("lists");
+        System.out.println("lists\n");
 
         List<Displayable> mediaList = new ArrayList<>();
         mediaList.addAll(movieRepo.getAll());
@@ -65,6 +65,28 @@ public class Main {
         for (Displayable item : mediaList) {
             item.displayInfo();
         }
+
+        List<MediaContent> mediaList1 = new ArrayList<>();
+        mediaList1.addAll(movieRepo.getAll());
+        mediaList1.addAll(seriesRepo.getAll());
+        mediaList1.addAll(episodeRepo.getAll());
+
+        int tempYear = 2027;
+        int tempID = 0;
+        for (MediaContent item : mediaList1) {
+            if (item.getReleaseYear() < tempYear) {
+                tempYear = item.getReleaseYear();
+                tempID = item.getMediaID();
+                mediaList.clear();
+                mediaList.add(item);
+            }
+        }
+        for (Displayable item : mediaList) {
+            System.out.println("The oldest media is: ");
+            item.displayInfo();
+        }
+
+
         // test
 
     }

@@ -12,7 +12,7 @@ public class MovieRepository {
 
     public MovieRepository(IDB db) { this.db = db; }
 
-    public void create(Movie m) {
+    public void create(Movie m) throws SQLException {
         Connection c = null;
         try {
             c = db.getConnection();
@@ -134,6 +134,24 @@ public class MovieRepository {
         }
 
     }
+    public double findAverage() throws SQLException {
+        Connection c = null;
+        try {
+            double avg = 0;
+            c = db.getConnection();
+            PreparedStatement ps2 = c.prepareStatement("SELECT AVG(duration) as avg_duration FROM movies");
+            ResultSet rs = ps2.executeQuery();
+            if (rs.next()) {
+                avg = rs.getDouble("avg_duration");
+            }
 
+            c.close();
+            return avg;
+        } catch (SQLException e) {
+            System.out.println("sql error: " + e.getMessage());
+        }
+
+        return 0;
+    }
 
 }

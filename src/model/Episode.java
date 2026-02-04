@@ -1,6 +1,6 @@
 package model;
 
-public class Episode extends MediaContent {
+public class Episode extends MediaContent implements Validatable<Episode> {
     private int episode_id;
     private int episodeNumber;
     private int duration; // minutes
@@ -33,6 +33,12 @@ public class Episode extends MediaContent {
         this.duration = duration;
     }
     // overriding an abstract method
+    @Override
+    public boolean isValid(Episode m) {
+        return m.duration > 0 && m.title != null && !m.title.isEmpty();
+    }
+
+    @Override
     public void displayInfo() {
         System.out.println("Episode: " + title + ", Year: " + releaseYear + ", Episode Number: " + episodeNumber + ", Duration: " + duration + " minutes");
     }
